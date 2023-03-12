@@ -1,17 +1,8 @@
-import Calculator from '../calculator/calculator';
-import Canvas from '../canvas/canvas';
-import Toggle from '../toggle/toggle';
-import './app.scss';
+import MainScreen from '../../pages/main-screen';
 
 const App = (): JSX.Element => {
   return (
-    <div className='container'>
-      <div className='constructor'>
-        <Toggle />
-        <Calculator />
-        <Canvas />
-      </div>
-    </div>
+    <MainScreen />
   );
 }
 

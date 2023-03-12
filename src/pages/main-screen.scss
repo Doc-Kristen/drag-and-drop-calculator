@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 38px;
+  padding-left: 76px;
+  padding-right: 80px;
+  padding-bottom: 86px;
+  background-color: #FFFFFF;
+  height: 516px;
+  width: 539px;
+}
+
+.constructor {
+  width: 539px;
+  display: flex;
+  justify-content: space-between;
+  align-self: center;
+}

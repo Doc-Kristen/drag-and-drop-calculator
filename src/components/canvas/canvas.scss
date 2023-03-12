@@ -1,0 +1,36 @@
+.canvas {
+  display: block;
+  width: 243px;
+  height: 448px;
+  border: 2px dashed #C4C4C4;
+  border-radius: 6px;
+  background-color: FFFFFF;
+  position: relative;
+}
+
+.canvas__instruction {
+  position: absolute;
+  margin: 182px 58px;
+}
+
+.instruction {
+  display: flex;
+  flex-direction: column;
+  width: 130px;
+  align-items: center;
+  text-align: center;
+}
+
+.instruction__title {
+  color: #5D5FEF;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.instruction__text {
+  color: #6B7280;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+}

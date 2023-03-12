@@ -1,0 +1,29 @@
+.button {
+  display: block;
+  align-items: center;
+  background: #FFFFFF;
+  border: 1px solid #E2E3E5;
+  border-radius: 6px;
+}
+
+.button--math-operation {
+  width: 52px;
+  height: 48px;
+}
+
+.button--number {
+  width: 72px;
+  height: 48px;
+}
+
+.button--null {
+  grid-column: span 2;
+  height: 48px;
+}
+
+.button--equally-button {
+  width: 100%;
+  height: 72px;
+  background-color: #5D5FEF;
+  color: #FFFFFF;
+}
