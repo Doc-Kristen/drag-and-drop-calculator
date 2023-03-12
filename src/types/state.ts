@@ -5,7 +5,10 @@ type ModeProcess = {
 }
 
 type CalculationProcess = {
-  result: number;
+  result: string | number;
+  previousNumber?:string | number,
+  presentNumber?:string | number,
+  mathOperation?: string
 }
 
 type State = ReturnType<typeof store.getState>;

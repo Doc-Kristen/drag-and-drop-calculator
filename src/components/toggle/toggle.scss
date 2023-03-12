@@ -31,8 +31,6 @@
 .checkbox-icon {
   height: 20px;
   top: 9px;
-  stroke: #4D5562;
-  // stroke: #5D5FEF;
 }
 
 .checkbox {
@@ -69,7 +67,6 @@
 
 }
 
-
 .button-slider {
   position: relative;
 }
@@ -87,5 +84,4 @@
 .button-slider .checkbox:checked+.knobs:before {
   left: 0;
   background-color: #FFFFFF;
-
 }

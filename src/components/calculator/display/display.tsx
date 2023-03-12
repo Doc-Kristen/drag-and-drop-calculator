@@ -4,12 +4,12 @@ import './display.scss';
 
 const Display = (): JSX.Element => {
 
-  const result = useAppSelector(getCalculationResult);
+  const displayValue = useAppSelector(getCalculationResult);
 
   return (
     <div className='calculator__display display'>
       <div className='display__result'>
-        <span className='display__text'>{result}</span>
+        <span className='display__text'>{displayValue}</span>
       </div>
     </div>
   );
