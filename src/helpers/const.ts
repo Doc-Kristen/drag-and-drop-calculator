@@ -1,3 +1,5 @@
+const STARTING_VALUE_DISPLAY = 0;
+
 const buttonParameterType = {
   'button--math-operation':
   {
@@ -11,4 +13,9 @@ const buttonParameterType = {
   }
 } as const;
 
-export { buttonParameterType };
+enum NameSpace {
+  MODE = 'MODE',
+  CALCULATION = 'CALCULATION',
+}
+
+export { buttonParameterType, NameSpace, STARTING_VALUE_DISPLAY };
