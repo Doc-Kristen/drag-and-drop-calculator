@@ -7,11 +7,14 @@ const Display = (): JSX.Element => {
   const displayValue = useAppSelector(getCalculationResult);
 
   return (
-    <div className='calculator__display display'>
-      <div className='display__result'>
+    <div
+      className='calculator__display display'
+      draggable
+    >
+      <div className={'display__result'}>
         <span className='display__text'>{displayValue}</span>
       </div>
-    </div>
+    </div >
   );
 }
 

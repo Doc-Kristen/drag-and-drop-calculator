@@ -4,7 +4,7 @@ import './equally-button.scss'
 
 const EquallyButton = (): JSX.Element => {
   return (
-    <div className='math-operations-pannel__equaly-button equaly-button'>
+    <div className='math-operations-pannel__equaly-button equaly-button' draggable>
       <Button buttonParameters={{ value: buttonParameterType["button--equally-button"].values[0], modificator: "button--equally-button" }} />
     </div>
   );

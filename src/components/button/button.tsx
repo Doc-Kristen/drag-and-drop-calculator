@@ -1,5 +1,5 @@
 import { MAX_NUMBER_SIGNS, STARTING_VALUE_DISPLAY } from '../../helpers/const';
-import { count, getIntermediateValue } from '../../helpers/utils';
+import { getIntermediateValue } from '../../helpers/utils';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { setMathOperation, setPreviousNumber, setResultAction } from '../../store/action';
 import { getCalculationResult, getMathOperation, getPreviosNumber } from '../../store/calculation-process/selectors';
@@ -45,7 +45,7 @@ const Button = ({ buttonParameters }: ButtonProps): JSX.Element => {
     if (buttonParameters.modificator === 'button--equally-button') {
       dispatch(setPreviousNumber(Number(displayValue)));
       if (previousValue !== undefined && displayValue !== undefined && mathOperation !== undefined) {
-        dispatch(setResultAction(count(Number(previousValue), Number(displayValue), mathOperation)));
+        // dispatch(setResultAction(count(Number(previousValue), Number(displayValue), mathOperation)));
       }
     }
   }

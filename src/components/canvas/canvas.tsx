@@ -1,8 +1,12 @@
+import { DragEvent } from 'react';
 import './canvas.scss';
 
 const Canvas = (): JSX.Element => {
+  const dragOverHandler = (e: DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+  };
   return (
-    <div className='canvas'>
+    <div className='canvas' onDragOver={(e) => dragOverHandler(e)}>
       <div className='canvas__instruction instruction'>
         <svg className='instruction__pull-acon pull-icon' aria-hidden="true" focusable="false"
           width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">

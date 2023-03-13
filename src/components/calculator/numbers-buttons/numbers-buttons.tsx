@@ -5,7 +5,9 @@ import './numbers-buttons.scss';
 
 const NumbersButtons = (): JSX.Element => {
   return (
-    <div className='math-operations-pannel__numbers-buttons numbers-buttons'>
+    <div className='math-operations-pannel__numbers-buttons numbers-buttons'
+    draggable
+    >
       <div className='numbers-buttons__container'>
         {
           buttonParameterType["button--number"].values.map(value => {
