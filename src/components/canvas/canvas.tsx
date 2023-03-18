@@ -1,13 +1,43 @@
-import { DragEvent } from 'react';
+import { useState } from 'react';
+import { useDrop } from 'react-dnd';
+import { elementTypeList } from '../../helpers/const';
+import Display from '../calculator/display/display';
+import EquallyButton from '../calculator/equally-button/equally-button';
+import MathOperationsButtons from '../calculator/math-operations-buttons/math-operations-buttons';
+import NumbersButtons from '../calculator/numbers-buttons/numbers-buttons';
 import './canvas.scss';
 
 const Canvas = (): JSX.Element => {
-  const dragOverHandler = (e: DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
+  const ElementList = [{ id: 'display', component: <Display /> }, { id: 'math-operations', component: <MathOperationsButtons /> }, { id: 'number-panel', component: <NumbersButtons /> }, { id: 'equally-button', component: <EquallyButton /> }];
+
+  const [board, setBoard] = useState([] as { id: string, component: JSX.Element }[]);
+  const [isDrop, setIsDrop] = useState(false);
+
+  const [{ isOver }, drop] = useDrop(() => ({
+    accept: elementTypeList,
+    drop: (item: HTMLDivElement) => addImageToBoard(item),
+    collect: (monitor) => ({
+      dragStart: monitor.canDrop(),
+      isOver: monitor.isOver(),
+    })
+  }))
+
+  const addImageToBoard = (item: HTMLDivElement) => {
+    setIsDrop(true);
+    const itemList = ElementList.filter((element) => item.id === element.id);
+    setBoard((board) => [...board, itemList[0]]);
   };
+  let counter = 1;
+
   return (
-    <div className='canvas' onDragOver={(e) => dragOverHandler(e)}>
-      <div className='canvas__instruction instruction'>
+
+    <div className='canvas'
+      ref={drop}
+      style={{ backgroundColor: isOver && !isDrop ? '#F0F9FF' : 'white', border: isDrop ? 'none' : '2px dashed #C4C4C4' }}
+    >
+      <div
+        style={{ display: isDrop ? 'none' : '' }}
+        className='canvas__instruction instruction'>
         <svg className='instruction__pull-acon pull-icon' aria-hidden="true" focusable="false"
           width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M18.7778 1V5.44444" stroke="black" strokeWidth="2" strokeLinecap="round" />
@@ -19,6 +49,13 @@ const Canvas = (): JSX.Element => {
         <span className='instruction__title'>Перетащите сюда</span>
         <span className='instruction__text'>любой элемент из левой панели</span>
       </div>
+      {
+        board.map((item: { id: string, component: JSX.Element }) => {
+          return <div
+            key={`item-${counter++}`}
+            className='item'>{item.component}</div>
+        })
+      }
     </div>
   );
 }

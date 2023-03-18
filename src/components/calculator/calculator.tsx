@@ -5,6 +5,7 @@ import MathOperationsButtons from './math-operations-buttons/math-operations-but
 import NumbersButtons from './numbers-buttons/numbers-buttons';
 
 const Calculator = (): JSX.Element => {
+
   return (
     <div className='calculator'>
       <Display />

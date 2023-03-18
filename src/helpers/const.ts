@@ -19,4 +19,13 @@ enum NameSpace {
   CALCULATION = 'CALCULATION',
 }
 
-export { buttonParameterType, NameSpace, STARTING_VALUE_DISPLAY, MAX_NUMBER_SIGNS };
+const elementType = {
+  DISPLAY: 'DISPLAY',
+  MATH_PANEL: 'MATH_PANEL',
+  NUMBER_PANEL: 'NUMBER_PANEL',
+  EQUALLY_BUTTON: 'EQUALLY_BUTTON'
+};
+
+const elementTypeList = ['DISPLAY', 'MATH_PANEL', 'NUMBER_PANEL', 'EQUALLY_BUTTON'];
+
+export { buttonParameterType, NameSpace, STARTING_VALUE_DISPLAY, MAX_NUMBER_SIGNS, elementType, elementTypeList };
