@@ -1,50 +1,39 @@
-import { useState } from 'react';
 import { useDrop } from 'react-dnd';
-import { elementTypeList } from '../../helpers/const';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { setComponentIdList } from '../../store/action';
+import { componentDraggableType } from '../../helpers/const';
+import { useAppSelector } from '../../hooks';
 import { getComponentIdList } from '../../store/mode-process/selectors';
+import { Item } from '../../types/boards-list';
 import Display from '../calculator/display/display';
 import EquallyButton from '../calculator/equally-button/equally-button';
-import MathOperationsPanel from '../calculator/math-operations-buttons/math-operations-panel';
+import MathOperationsPanel from '../calculator/math-operations-panel/math-operations-panel';
 import NumbersPanel from '../calculator/numbers-panel/numbers-panel';
+import DragAndDropWrapper from '../drag-and-drop-wrapper/drag-and-drop-wrapper';
 import './canvas.scss';
 
 const Canvas = (): JSX.Element => {
-  const dispatch = useAppDispatch();
-  const componentsInCanvasIdList = useAppSelector(getComponentIdList);
-  const elementList = [{ id: 'display', component: <Display isInCanvas={true} /> }, { id: 'math-operations', component: <MathOperationsPanel isInCanvas={true} /> }, { id: 'number-panel', component: <NumbersPanel isInCanvas={true} /> }, { id: 'equally-button', component: <EquallyButton isInCanvas={true} /> }];
 
-  const [board, setBoard] = useState([] as { id: string, component: JSX.Element }[]);
-  const [isDrop, setIsDrop] = useState(false);
+  const componentCanvasIdList = useAppSelector(getComponentIdList);
+  const elementList = [{ id: 'display', component: <Display /> }, { id: 'math-operations', component: <MathOperationsPanel /> }, { id: 'number-panel', component: <NumbersPanel /> }, { id: 'equally-button', component: <EquallyButton /> }];
+  const componentsInCanvass = elementList.filter(element => componentCanvasIdList.some(item => item.id === element.id));
 
-  const addComponentToBoard = (item: HTMLDivElement) => {
-    setIsDrop(true);
-    dispatch(setComponentIdList({ id: item.id }));
-    const itemList = elementList.filter((element) => item.id === element.id);
-    setBoard((board) => [...board, itemList[0]]);
-  };
   let counter = 1;
 
-  console.log(componentsInCanvasIdList);
-
   const [{ isOver }, drop] = useDrop(() => ({
-    accept: elementTypeList,
-    drop: (item: HTMLDivElement) => addComponentToBoard(item),
+    accept: componentDraggableType,
     collect: (monitor) => ({
       dragStart: monitor.canDrop(),
       isOver: monitor.isOver(),
     })
-  }))
+  }));
 
   return (
 
     <div className='canvas'
       ref={drop}
-      style={{ backgroundColor: isOver && !isDrop ? '#F0F9FF' : 'white', border: isDrop ? 'none' : '2px dashed #C4C4C4' }}
+      style={{ backgroundColor: isOver && !componentsInCanvass.length ? '#F0F9FF' : 'white', border: componentsInCanvass.length > 0 ? 'none' : '2px dashed #C4C4C4' }}
     >
       <div
-        style={{ display: isDrop ? 'none' : '' }}
+        style={{ display: componentsInCanvass.length > 0 ? 'none' : '' }}
         className='canvas__instruction instruction'>
         <svg className='instruction__pull-acon pull-icon' aria-hidden="true" focusable="false"
           width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -58,11 +47,17 @@ const Canvas = (): JSX.Element => {
         <span className='instruction__text'>любой элемент из левой панели</span>
       </div>
       {
-        board.map((item: { id: string, component: JSX.Element }) => {
+        componentsInCanvass.map((item: Item) => {
           return <div
             key={`item-${counter++}`}
             className='item'
-          >{item.component}</div>
+          >
+            <DragAndDropWrapper
+              isInCanvas={true}
+              children={item.component}
+              id={item.id}
+            />
+          </div>
         })
       }
     </div>

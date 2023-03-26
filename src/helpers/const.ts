@@ -26,8 +26,8 @@ const elementType = {
   EQUALLY_BUTTON: 'EQUALLY_BUTTON'
 };
 
-const elementTypeList = ['DISPLAY', 'MATH_PANEL', 'NUMBER_PANEL', 'EQUALLY_BUTTON'];
+const componentDraggableType = 'calculator-component';
 
 const componentIdList = [{ id: 'display' }, { id: 'math-operations' }, { id: 'number-panel' }, { id: 'equally-button' }];
 
-export { buttonParameterType, NameSpace, STARTING_VALUE_DISPLAY, MAX_NUMBER_SIGNS, elementType, elementTypeList, componentIdList };
+export { buttonParameterType, NameSpace, STARTING_VALUE_DISPLAY, MAX_NUMBER_SIGNS, elementType, componentDraggableType, componentIdList };

@@ -1,5 +1,4 @@
 import { createAction } from "@reduxjs/toolkit";
-import { Board, Boards, Item } from "../types/boards-list";
 
 export const Action = {
   SET_MODE: 'SET_MODE',
@@ -7,9 +6,6 @@ export const Action = {
   SET_PREVIOS_NUMBER: 'SET_PREVIOS_NUMBER',
   SET_PRESENT_NUMBER: 'SET_PRESENT_NUMBER',
   SET_MATH_OPERATION: 'SET_MATH_OPERATION',
-  SET_BOARDS: 'SET_BOARDS',
-  SET_BOARD: 'SET_BOARD',
-  SET_ITEM: 'SET_ITEM',
   SET_COMPONENT_ID_LIST: 'SET_COMPONENT_ID_LIST',
 };
 
@@ -39,28 +35,10 @@ const setMathOperation = createAction(Action.SET_MATH_OPERATION, (value: string)
     payload: value,
   }));
 
-const setBoards = createAction(Action.SET_BOARDS, (value: Boards) => (
+const setComponentIdList = createAction(Action.SET_COMPONENT_ID_LIST, (value: { actionType: string, id: { id: string } }) => (
   {
     payload: value,
   }
 ));
 
-const setItem = createAction(Action.SET_ITEM, (value: Item) => (
-  {
-    payload: value,
-  }
-));
-
-const setBoard = createAction(Action.SET_BOARD, (value: Board) => (
-  {
-    payload: value,
-  }
-));
-
-const setComponentIdList = createAction(Action.SET_COMPONENT_ID_LIST, (value: { id: string }) => (
-  {
-    payload: value,
-  }
-));
-
-export { setModeAction, setResultAction, setPreviousNumber, setPresentNumber, setMathOperation, setBoards, setItem, setBoard, setComponentIdList }
+export { setModeAction, setResultAction, setPreviousNumber, setPresentNumber, setMathOperation, setComponentIdList }
