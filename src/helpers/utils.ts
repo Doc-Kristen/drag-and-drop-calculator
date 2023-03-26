@@ -10,7 +10,8 @@ const getIntermediateValue = (startValue: string, newValue: string) => {
   }
 };
 
-const count = (num1: number, num2: number, mark: string) => {
+// Заменить any
+const count = (num1: any, num2: any, mark: string) => {
   switch (mark) {
     case "х":
       return num1 * num2;

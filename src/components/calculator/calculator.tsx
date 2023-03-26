@@ -11,7 +11,9 @@ const Calculator = (): JSX.Element => {
     <div className='calculator'>
       <DragAndDropWrapper
         isInCanvas={false}
-        children={<Display />}
+        children={<Display
+          inCanvas={false}
+        />}
         id={'display'}
       />
       <DragAndDropWrapper

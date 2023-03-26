@@ -25,7 +25,6 @@ const DragAndDropWrapper = ({ isInCanvas, children, id }: DragAndDropWrapperProp
     end: () => {
       setIsDrop(true);
       if (componentInCanvass(id)) {
-        console.log('Уже есть');
         return;
       } else {
         dispatch(setComponentIdList({ actionType: 'add', id: { id: id } }));
@@ -35,9 +34,6 @@ const DragAndDropWrapper = ({ isInCanvas, children, id }: DragAndDropWrapperProp
       isDragging: monitor.isDragging(),
     })
   }))
-
-
-  // const componentInCanvas = componentCanvasIdList.some((item) => item.id === id);
 
   return (
     <div

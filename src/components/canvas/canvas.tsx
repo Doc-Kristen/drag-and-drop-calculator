@@ -13,7 +13,7 @@ import './canvas.scss';
 const Canvas = (): JSX.Element => {
 
   const componentCanvasIdList = useAppSelector(getComponentIdList);
-  const elementList = [{ id: 'display', component: <Display /> }, { id: 'math-operations', component: <MathOperationsPanel /> }, { id: 'number-panel', component: <NumbersPanel /> }, { id: 'equally-button', component: <EquallyButton /> }];
+  const elementList = [{ id: 'display', component: <Display inCanvas={true} /> }, { id: 'math-operations', component: <MathOperationsPanel /> }, { id: 'number-panel', component: <NumbersPanel /> }, { id: 'equally-button', component: <EquallyButton /> }];
   const componentsInCanvass = elementList.filter(element => componentCanvasIdList.some(item => item.id === element.id));
 
   let counter = 1;

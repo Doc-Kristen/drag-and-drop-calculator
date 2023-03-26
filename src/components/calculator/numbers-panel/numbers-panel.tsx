@@ -14,7 +14,7 @@ const NumbersPanel = (): JSX.Element => {
             const buttonModificator = value !== '0' ? 'button--number' : 'button--null';
             return <Button
               key={value}
-              buttonParameters={{ value, modificator: buttonModificator }} />
+              buttonParameter={{ value, modificator: buttonModificator }} />
           }
           )
         }

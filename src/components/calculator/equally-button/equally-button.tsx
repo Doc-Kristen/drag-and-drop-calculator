@@ -8,7 +8,7 @@ const EquallyButton = (): JSX.Element => {
     <div className='math-operations-pannel__equaly-button equaly-button'
       id='equally-button'
     >
-      <Button buttonParameters={{ value: buttonParameterType["button--equally-button"].values[0], modificator: "button--equally-button" }} />
+      <Button buttonParameter={{ value: buttonParameterType["button--equally-button"].values[0], modificator: "button--equally-button" }} />
     </div>
   );
 }

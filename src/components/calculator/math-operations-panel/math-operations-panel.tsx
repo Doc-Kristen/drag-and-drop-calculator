@@ -14,7 +14,7 @@ const MathOperationsPanel = (): JSX.Element => {
           buttonParameterType['button--math-operation'].values.map(value =>
             <Button
               key={value}
-              buttonParameters={{ value, modificator: 'button--math-operation' }} />
+              buttonParameter={{ value, modificator: 'button--math-operation' }} />
           )
         }
       </div>

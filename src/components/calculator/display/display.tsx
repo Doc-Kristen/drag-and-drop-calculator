@@ -2,7 +2,11 @@ import { useAppSelector } from '../../../hooks';
 import { getCalculationResult } from '../../../store/calculation-process/selectors';
 import './display.scss';
 
-const Display = (): JSX.Element => {
+type DisplayProps = {
+  inCanvas: boolean
+}
+
+const Display = ({ inCanvas }: DisplayProps): JSX.Element => {
 
   const displayValue = useAppSelector(getCalculationResult);
 
@@ -13,7 +17,7 @@ const Display = (): JSX.Element => {
       id='display'
     >
       <div className={'display__result'}>
-        <span className='display__text'>{displayValue}</span>
+        <span className='display__text'>{inCanvas ? displayValue : '0'}</span>
       </div>
     </div>
   );
