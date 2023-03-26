@@ -28,4 +28,6 @@ const elementType = {
 
 const elementTypeList = ['DISPLAY', 'MATH_PANEL', 'NUMBER_PANEL', 'EQUALLY_BUTTON'];
 
-export { buttonParameterType, NameSpace, STARTING_VALUE_DISPLAY, MAX_NUMBER_SIGNS, elementType, elementTypeList };
+const componentIdList = [{ id: 'display' }, { id: 'math-operations' }, { id: 'number-panel' }, { id: 'equally-button' }];
+
+export { buttonParameterType, NameSpace, STARTING_VALUE_DISPLAY, MAX_NUMBER_SIGNS, elementType, elementTypeList, componentIdList };

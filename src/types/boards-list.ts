@@ -1,3 +1,4 @@
+
 type Item = {
   id: number;
   item: JSX.Element;
@@ -13,5 +14,7 @@ type Board = {
 
 type Boards = Board[];
 
+type ComponentIdList = { id: string }[];
 
-export type { Item, Items, Board, Boards };
+
+export type { Item, Items, Board, Boards, ComponentIdList };

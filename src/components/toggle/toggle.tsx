@@ -6,7 +6,7 @@ import './toggle.scss';
 const Toggle = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const isModeBuilding = useAppSelector(getModeStatus);
-
+  console.log(isModeBuilding);
   return (
     <div className="container__toggle toggle">
       <div className="toggle__button-slider button-slider">

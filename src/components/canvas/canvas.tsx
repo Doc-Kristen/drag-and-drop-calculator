@@ -1,33 +1,41 @@
 import { useState } from 'react';
 import { useDrop } from 'react-dnd';
 import { elementTypeList } from '../../helpers/const';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { setComponentIdList } from '../../store/action';
+import { getComponentIdList } from '../../store/mode-process/selectors';
 import Display from '../calculator/display/display';
 import EquallyButton from '../calculator/equally-button/equally-button';
-import MathOperationsButtons from '../calculator/math-operations-buttons/math-operations-buttons';
-import NumbersButtons from '../calculator/numbers-buttons/numbers-buttons';
+import MathOperationsPanel from '../calculator/math-operations-buttons/math-operations-panel';
+import NumbersPanel from '../calculator/numbers-panel/numbers-panel';
 import './canvas.scss';
 
 const Canvas = (): JSX.Element => {
-  const ElementList = [{ id: 'display', component: <Display /> }, { id: 'math-operations', component: <MathOperationsButtons /> }, { id: 'number-panel', component: <NumbersButtons /> }, { id: 'equally-button', component: <EquallyButton /> }];
+  const dispatch = useAppDispatch();
+  const componentsInCanvasIdList = useAppSelector(getComponentIdList);
+  const elementList = [{ id: 'display', component: <Display isInCanvas={true} /> }, { id: 'math-operations', component: <MathOperationsPanel isInCanvas={true} /> }, { id: 'number-panel', component: <NumbersPanel isInCanvas={true} /> }, { id: 'equally-button', component: <EquallyButton isInCanvas={true} /> }];
 
   const [board, setBoard] = useState([] as { id: string, component: JSX.Element }[]);
   const [isDrop, setIsDrop] = useState(false);
 
+  const addComponentToBoard = (item: HTMLDivElement) => {
+    setIsDrop(true);
+    dispatch(setComponentIdList({ id: item.id }));
+    const itemList = elementList.filter((element) => item.id === element.id);
+    setBoard((board) => [...board, itemList[0]]);
+  };
+  let counter = 1;
+
+  console.log(componentsInCanvasIdList);
+
   const [{ isOver }, drop] = useDrop(() => ({
     accept: elementTypeList,
-    drop: (item: HTMLDivElement) => addImageToBoard(item),
+    drop: (item: HTMLDivElement) => addComponentToBoard(item),
     collect: (monitor) => ({
       dragStart: monitor.canDrop(),
       isOver: monitor.isOver(),
     })
   }))
-
-  const addImageToBoard = (item: HTMLDivElement) => {
-    setIsDrop(true);
-    const itemList = ElementList.filter((element) => item.id === element.id);
-    setBoard((board) => [...board, itemList[0]]);
-  };
-  let counter = 1;
 
   return (
 
@@ -53,7 +61,8 @@ const Canvas = (): JSX.Element => {
         board.map((item: { id: string, component: JSX.Element }) => {
           return <div
             key={`item-${counter++}`}
-            className='item'>{item.component}</div>
+            className='item'
+          >{item.component}</div>
         })
       }
     </div>

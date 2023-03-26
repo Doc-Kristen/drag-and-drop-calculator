@@ -10,6 +10,7 @@ export const Action = {
   SET_BOARDS: 'SET_BOARDS',
   SET_BOARD: 'SET_BOARD',
   SET_ITEM: 'SET_ITEM',
+  SET_COMPONENT_ID_LIST: 'SET_COMPONENT_ID_LIST',
 };
 
 const setModeAction = createAction(Action.SET_MODE, (value: boolean) => (
@@ -56,4 +57,10 @@ const setBoard = createAction(Action.SET_BOARD, (value: Board) => (
   }
 ));
 
-export { setModeAction, setResultAction, setPreviousNumber, setPresentNumber, setMathOperation, setBoards, setItem, setBoard}
+const setComponentIdList = createAction(Action.SET_COMPONENT_ID_LIST, (value: { id: string }) => (
+  {
+    payload: value,
+  }
+));
+
+export { setModeAction, setResultAction, setPreviousNumber, setPresentNumber, setMathOperation, setBoards, setItem, setBoard, setComponentIdList }

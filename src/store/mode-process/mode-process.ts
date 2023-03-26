@@ -1,14 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { NameSpace } from '../../helpers/const';
-import { Board, Boards, Item,  } from '../../types/boards-list';
+import { Board, Boards, Item, } from '../../types/boards-list';
 import { ModeProcess } from '../../types/state';
-import { setBoard, setBoards, setItem, setModeAction } from '../action';
+import { setBoard, setBoards, setComponentIdList, setItem, setModeAction } from '../action';
 
 const initialState: ModeProcess = {
   isModeBuild: false,
   item: {} as Item,
   board: {} as Board,
-  boards: [] as Boards
+  boards: [] as Boards,
+  componentList: [] as { id: string }[]
 };
 
 export const modeProcess = createSlice({
@@ -28,6 +29,9 @@ export const modeProcess = createSlice({
       })
       .addCase(setItem, (state, action) => {
         state.item = action.payload;
+      })
+      .addCase(setComponentIdList, (state, action) => {
+        state.componentList.push(action.payload);
       });
   }
 });

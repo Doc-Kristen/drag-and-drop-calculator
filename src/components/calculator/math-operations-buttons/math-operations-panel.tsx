@@ -4,21 +4,22 @@ import { buttonParameterType, elementType } from '../../../helpers/const';
 import { useAppSelector } from '../../../hooks';
 import { getComponentIdList, getModeStatus } from '../../../store/mode-process/selectors';
 import Button from '../../button/button';
-import './equally-button.scss'
+import './math-operations-panel.scss';
 
-type EquallyButtonProps = {
+type MathOperationsPanelProps = {
   isInCanvas?: boolean,
 }
 
-const EquallyButton = ({ isInCanvas }: EquallyButtonProps): JSX.Element => {
+const MathOperationsPanel = ({ isInCanvas }: MathOperationsPanelProps): JSX.Element => {
+
   const componentCanvasIdList = useAppSelector(getComponentIdList);
   const isConstructorMode = useAppSelector(getModeStatus);
 
   const [isDrop, setIsDrop] = useState(false);
 
   const [{ isDragging }, drag] = useDrag(() => ({
-    type: elementType.EQUALLY_BUTTON,
-    item: { id: 'equally-button' },
+    type: elementType.MATH_PANEL,
+    item: { id: 'math-operations' },
     end: () => {
       setIsDrop(true);
     },
@@ -27,20 +28,30 @@ const EquallyButton = ({ isInCanvas }: EquallyButtonProps): JSX.Element => {
     })
   }));
 
-  const componentInCanvas = componentCanvasIdList.some((item) => item.id === 'equally-button');
+  const componentInCanvas = componentCanvasIdList.some((item) => item.id === 'math-operations');
 
   return (
-    <div className='math-operations-pannel__equaly-button equaly-button'
-      id='equally-button'
+    <div className='math-operations-pannel__math-operations-buttons math-operations-buttons'
+      draggable
       ref={!componentInCanvas && !isInCanvas && !isConstructorMode ? drag : undefined}
       style={{
         opacity: isDragging || isDrop ? 0.5 : 1,
         cursor: 'move',
       }}
     >
-      <Button buttonParameters={{ value: buttonParameterType["button--equally-button"].values[0], modificator: "button--equally-button" }} />
+      <div className='math-operations-buttons__container'
+        id='math-operations'
+      >
+        {
+          buttonParameterType['button--math-operation'].values.map(value =>
+            <Button
+              key={value}
+              buttonParameters={{ value, modificator: 'button--math-operation' }} />
+          )
+        }
+      </div>
     </div>
   );
 }
 
-export default EquallyButton;
+export default MathOperationsPanel;
