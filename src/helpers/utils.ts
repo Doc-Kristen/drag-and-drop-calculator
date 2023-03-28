@@ -11,17 +11,17 @@ const getIntermediateValue = (startValue: string, newValue: string) => {
 };
 
 // Заменить any
-const count = (num1: any, num2: any, mark: string) => {
-  switch (mark) {
+const count = (firstNumber: any, secondNumber: any, operator: string) => {
+  switch (operator) {
     case "х":
-      return num1 * num2;
+      return firstNumber * secondNumber;
     case "+":
-      return num1 + num2;
+      return firstNumber + secondNumber;
     case "-":
-      return num1 - num2;
+      return firstNumber - secondNumber;
     case "/":
-      if (num2 !== 0) {
-        return num1 / num2;
+      if (secondNumber !== 0) {
+        return firstNumber / secondNumber;
       } else {
         return "Не определено";
       }

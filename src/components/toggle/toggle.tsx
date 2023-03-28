@@ -1,11 +1,18 @@
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { setModeAction } from '../../store/action';
+import { setComponentIdList, setModeAction, setResultAction } from '../../store/action';
 import { getModeStatus } from '../../store/mode-process/selectors';
 import './toggle.scss';
 
 const Toggle = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const isModeBuilding = useAppSelector(getModeStatus);
+  const handleInputChange = () => {
+    dispatch(setModeAction(!isModeBuilding));
+    dispatch(setResultAction('0'));
+    if (isModeBuilding) {
+      dispatch(setComponentIdList({ actionType: 'reset', id: { id: '' } }));
+    }
+  };
 
   return (
     <div className="container__toggle toggle">
@@ -16,9 +23,7 @@ const Toggle = (): JSX.Element => {
           className="checkbox"
           id='checkbox-toggle'
           checked={isModeBuilding}
-          onChange={
-            () => dispatch(setModeAction(!isModeBuilding))
-          }
+          onChange={handleInputChange}
         ></input>
         <div className="knobs">
           <div className='knobs__button button--checkbox'>

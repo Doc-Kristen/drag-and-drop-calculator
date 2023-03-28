@@ -25,6 +25,9 @@ export const modeProcess = createSlice({
           const newComponentList = state.componentList.filter(item => item.id !== action.payload.id.id);
           state.componentList = newComponentList;
         }
+        if (action.payload.actionType === 'reset') {
+          state.componentList = [] as { id: string }[];
+        }
       });
   }
 });

@@ -18,14 +18,15 @@ export const useCalculator = (buttonParameter: ButtonParameters): ResultuseCalcu
   const mathOperation = useAppSelector(getMathOperation);
   const isModeBuilding = useAppSelector(getModeStatus);
   const allDisplayValues = String(displayValue).split('');
+  // const fixedDisplayValue = allDisplayValues.length >= 16 ? Number(displayValue).toFixed(15) : displayValue;
 
   const handleButtonClick = async () => {
-    if(!isModeBuilding) {
+    if (!isModeBuilding) {
       return;
     }
     if ((buttonParameter.modificator === 'button--number' ||
-    buttonParameter.modificator === 'button--null') &&
-      allDisplayValues.length <= MAX_NUMBER_SIGNS) {
+      buttonParameter.modificator === 'button--null') &&
+      allDisplayValues.length < MAX_NUMBER_SIGNS) {
       if (buttonParameter.value === ',') {
         if (!allDisplayValues.includes(',')) {
           dispatch(setResultAction(getIntermediateValue(String(displayValue), buttonParameter.value)));
